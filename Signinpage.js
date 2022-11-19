@@ -1,70 +1,118 @@
-import React from "react";
+import React ,{useState} from "react";
+import DropDownPicker from 'react-native-dropdown-picker';
+
 import { StyleSheet, Image, TextInput, Text, View, TouchableOpacity, ImageBackground, TouchableWithoutFeedback, ScrollView } from "react-native";
 
 export default function App() {
+    
+        const [open, setOpen] = useState(false);
+        const [value, setValue] = useState(null);
+        const [items, setItems] = useState([
+            { label: 'Andhra Pradesh', value: 'andhra pradesh' },
+            { label: 'Arunachal Pradesh', value: 'arunachal pradesh' },
+            { label:'Assam', value: 'assam'},
+            { label:'Bihar', value:'bihar'},
+            { label:'Chhattisgarh', value:'chhattisgarh'},
+            { label:'Goa', value:'goa'},
+            { label:'Kerala', value:'kerala'},
+        ]);
 
+        const [openCountry, setopenCountry] = useState(false);
+        const [valueCountry, setValueCountry] = useState(null);
+        const [itemsCountry, setItemsCountry] = useState([
+            { label: 'India', value: 'india' },
+            { label: 'China', value: 'china' },
+            { label:'Brazil', value: 'brazil'},
+            { label:'Colombia', value:'colombia'},
+            { label:'Denmark', value:'denmark'},
+            { label:'Egypt', value:'egypt'},
+            { label:'France', value:'france'}
+        ]);
 
-    return (
-        <ScrollView>
-            <View style={[styles.container]}>
-                <ImageBackground source={require('./assets/artbackground1.webp')} resizeMode="cover" style={styles.backimage}>
-                    <View style={styles.mainview}>
-                        <View style={styles.logostyle} >
-                            <Image style={styles.mlogoimage} source={require("./assets/graphic-designer.png")}></Image>
+        return (
+
+            <ScrollView>
+                <View style={[styles.container]}>
+                    <ImageBackground source={require('./assets/artbackground1.webp')} resizeMode="cover" style={styles.backimage}>
+                        <View style={styles.mainview}>
+                            <View style={styles.logostyle} >
+                                <Image style={styles.mlogoimage} source={require("./assets/graphic-designer.png")}></Image>
+                            </View>
+                            <Text style={styles.signtext}>Signup</Text>
+                            <View ><TouchableOpacity activeOpacity={.6} style={styles.touchbtn1}><Text style={styles.fbtn}>Already have account? Login</Text></TouchableOpacity></View>
+                            <View style={[styles.signupmain, { flexDirection: 'row' }]} ><View style={styles.mainlogo}><Image style={styles.logoimage} source={require("./assets/user.png")}></Image></View><TextInput style={styles.input1} placeholder="Username" ></TextInput></View>
+                            <View style={[styles.signupmain, { flexDirection: 'row' }]} ><View style={styles.mainlogo}><Image style={styles.logoimage} source={require("./assets/mail-inbox-app.png")}></Image></View><TextInput style={styles.input1} placeholder="Email" ></TextInput></View>
+                            <View style={[styles.signupmain, { flexDirection: 'row' }]} ><View style={styles.mainlogo}><Image style={styles.logoimage} source={require("./assets/key.png")}></Image></View><TextInput style={styles.input1} placeholder="Password" ></TextInput></View>
+                            <View style={[styles.signupmain, { flexDirection: 'row' }]} ><View style={styles.mainlogo}><Image style={styles.logoimage} source={require("./assets/key.png")}></Image></View><TextInput style={styles.input1} placeholder="Confirm Password" ></TextInput></View>
+                            <View style={styles.signupmain}>
+                                <DropDownPicker style={styles.state}
+                                    open={open}
+                                    value={value}
+                                    items={items}
+                                    setOpen={setOpen}
+                                    setValue={setValue}
+                                    setItems={setItems}
+                                    placeholder={"Select a States"}
+                                />
+                            </View>
+                            <View style={styles.signupmain}>
+                                <DropDownPicker style={styles.Country}
+                                    open={openCountry}
+                                    value={valueCountry}
+                                    items={itemsCountry}
+                                    setOpen={setopenCountry}
+                                    setValue={setValueCountry}
+                                    setItems={setItemsCountry}
+                                    placeholder={"Select a Country"}
+                                />
+                            </View>
+                            <View ><TouchableOpacity activeOpacity={.5} style={styles.touchbtn2}><Text style={styles.Lbtn}>REGISTER NOW</Text></TouchableOpacity></View>
+                            <Text style={styles.ortext}>_______________________   Or   _________________________</Text>
+                            <View style={[styles.login_social_buttons, { flexDirection: 'row' }]}>
+                                <View
+                                    style={
+                                        styles.login_social_button}>
+                                    <TouchableOpacity>
+                                        <Image
+                                            style={styles.login_social_icon}
+                                            source={require('./assets/google.png')}
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.login_social_button}>
+                                    <TouchableOpacity>
+                                        <Image
+                                            style={styles.login_social_icon}
+                                            source={require('./assets/facebook.png')}
+                                        />
+
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.login_social_button}>
+                                    <TouchableOpacity>
+
+                                        <Image
+                                            style={styles.login_social_icon}
+                                            source={require('./assets/twitter.png')}
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.login_social_button}>
+                                    <TouchableOpacity>
+
+                                        <Image
+                                            style={styles.login_social_icon}
+                                            source={require('./assets/apple-logo.png')}
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
                         </View>
-                        <Text style={styles.signtext}>Signup</Text>
-                        <View ><TouchableOpacity activeOpacity={.6} style={styles.touchbtn1}><Text style={styles.fbtn}>Already have account? Login</Text></TouchableOpacity></View>
-
-                        <View style={[styles.signupmain, { flexDirection: 'row' }]} ><View style={styles.mainlogo}><Image style={styles.logoimage} source={require("./assets/user.png")}></Image></View><TextInput style={styles.input1} placeholder="Username" ></TextInput></View>
-                        <View style={[styles.signupmain, { flexDirection: 'row' }]} ><View style={styles.mainlogo}><Image style={styles.logoimage} source={require("./assets/mail-inbox-app.png")}></Image></View><TextInput style={styles.input1} placeholder="Email" ></TextInput></View>
-                        <View style={[styles.signupmain, { flexDirection: 'row' }]} ><View style={styles.mainlogo}><Image style={styles.logoimage} source={require("./assets/key.png")}></Image></View><TextInput style={styles.input1} placeholder="Password" ></TextInput></View>
-                        <View style={[styles.signupmain, { flexDirection: 'row' }]} ><View style={styles.mainlogo}><Image style={styles.logoimage} source={require("./assets/key.png")}></Image></View><TextInput style={styles.input1} placeholder="Confirm Password" ></TextInput></View>
-                        <View ><TouchableOpacity activeOpacity={.5} style={styles.touchbtn2}><Text style={styles.Lbtn}>REGISTER NOW</Text></TouchableOpacity></View>
-                        <Text style={styles.ortext}>_______________________   Or   _________________________</Text>
-                        <View style={[styles.login_social_buttons, { flexDirection: 'row' }]}>
-                            <View
-                                style={
-                                    styles.login_social_button}>
-                                <TouchableOpacity>
-                                    <Image
-                                        style={styles.login_social_icon}
-                                        source={require('./assets/google.png')}
-                                    />
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.login_social_button}>
-                                <TouchableOpacity>
-                                    <Image
-                                        style={styles.login_social_icon}
-                                        source={require('./assets/facebook.png')}
-                                    />
-
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.login_social_button}>
-                                <TouchableOpacity>
-
-                                    <Image
-                                        style={styles.login_social_icon}
-                                        source={require('./assets/twitter.png')}
-                                    />
-                                </TouchableOpacity>
-                            </View>
-                            <View style={styles.login_social_button}>
-                                <TouchableOpacity>
-
-                                    <Image
-                                        style={styles.login_social_icon}
-                                        source={require('./assets/apple-logo.png')}
-                                    />
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                </ImageBackground>
-            </View>
-        </ScrollView>
-    );
+                    </ImageBackground>
+                </View>
+            </ScrollView>
+        );
+    
 };
 
 const styles = StyleSheet.create({
@@ -134,7 +182,8 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginLeft: 25,
     },
-    login_social_button: {
+    login_social_buttons: {
+        marginBottom: 30
 
     },
     logostyle: {
@@ -151,8 +200,49 @@ const styles = StyleSheet.create({
         width: 70,
         marginTop: 100
     },
-    mainview:{
-        paddingHorizontal:20,
-    }
+    mainview: {
+        paddingHorizontal: 20,
+    },
+    state:{
+        borderColor:'white',
+        
+        fontSize:70,
+    },
+    Country:{
+        borderColor:'white',
+        
+    },
 
 });
+
+
+
+
+
+// import React,{useState} from 'react'
+// import { View, Text } from 'react-native'
+// import DropDownPicker from 'react-native-dropdown-picker';
+
+// const App = () => {
+
+//     const [open, setOpen] = useState(false);
+//     const [value, setValue] = useState(null);
+//     const [items, setItems] = useState([
+//         { label: 'Apple', value: 'apple' },
+//         { label: 'Banana', value: 'banana' }
+//     ]);
+
+
+//   return (
+//     <DropDownPicker
+//         open={open}
+//         value={value}
+//         items={items}
+//         setOpen={setOpen}
+//         setValue={setValue}
+//         setItems={setItems}
+//     />
+//   )
+// }
+
+// export default App

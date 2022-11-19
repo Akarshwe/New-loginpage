@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     marginLeft:25,
   },
   backimage:{
-    height:700,
+    height:760,
   },
   mlogoimage:{
   height:70,
